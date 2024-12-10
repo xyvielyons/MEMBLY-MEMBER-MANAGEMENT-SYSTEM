@@ -12,6 +12,7 @@ const geistMono = localFont({
   variable: "--font-geist-mono",
   weight: "100 900",
 });
+import { Toaster } from "@/components/ui/toaster"
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -26,10 +27,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-50`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-50 h-full`}
       >
         <ClientProviders>
-        {children}
+          <div className="max-w-7xl mx-auto px-2 md:px-8 lg:px-[60px] xl:px-[80px]">
+          {children}
+          </div>
+          <Toaster />
         </ClientProviders>
       </body>
     </html>
