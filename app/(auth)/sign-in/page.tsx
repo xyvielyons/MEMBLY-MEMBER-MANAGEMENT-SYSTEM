@@ -2,7 +2,7 @@ import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import SignInForm from '@/components/forms/SignInForm'
-
+import Socials from '@/components/shared/Socials'
 const page = () => {
   return (
     <div className="flex flex-col md:flex-row max-w-screen-xl mx-auto">
@@ -17,6 +17,9 @@ const page = () => {
           Manage Your Memberships with Ease.
           </p>
           <SignInForm />
+        </div>
+        <div className="">
+          <Socials></Socials>
         </div>
         <div className="">
           <span className='text-sm text-gray-600'>Dont have an account? <Link href="/sign-up" className='text-gray-800 font-semibold hover:text-gray-500 active:text-gray-500'>Register</Link></span>

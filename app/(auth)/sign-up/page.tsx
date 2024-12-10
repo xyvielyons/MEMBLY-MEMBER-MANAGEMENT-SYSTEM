@@ -2,6 +2,7 @@ import React from 'react'
 import Image from 'next/image'
 import SignUpForm from '@/components/forms/SignUpForm'
 import Link from 'next/link'
+import Socials from '@/components/shared/Socials'
 
 const page = () => {
   return (
@@ -17,6 +18,9 @@ const page = () => {
             Effortless Member Management Starts Here – Create Your Account Today!
           </p>
           <SignUpForm />
+        </div>
+        <div className="">
+          <Socials></Socials>
         </div>
         <div className="">
           <span className='text-sm text-gray-600'>Have an account? <Link href="/sign-in" className='text-gray-800 font-semibold hover:text-gray-500 active:text-gray-500'>Login</Link></span>
