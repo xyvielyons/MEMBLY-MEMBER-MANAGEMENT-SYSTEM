@@ -11,7 +11,7 @@ const getPasswordSchema = (type:"password" | "confirmPassword") => (
   .min(8,`${type} must be atleast 8 characters`)
   .max(32,`${type} can not exceed 32 characters`)
 )
-export const signInSchema = z.object({
+export const signUpSchema = z.object({
   name:getNameSchema(),
   email:getEmailSchema(),
   password:getPasswordSchema("password"),
@@ -21,4 +21,9 @@ export const signInSchema = z.object({
   message:"passwords dont match",
   //pinpoints where the error should be shown
   path:["confirmPassword"]
+})
+
+export const signInSchema = z.object({
+  email:getEmailSchema(),
+  password:getPasswordSchema("password")
 })
