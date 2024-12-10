@@ -54,6 +54,7 @@ model Account {
   refreshTokenExpiresAt DateTime?
   scope                 String?
   password              String?
+  idToken             String?  // Make it optional if not always present
   createdAt             DateTime  @default(now())
   updatedAt             DateTime  @updatedAt
 
