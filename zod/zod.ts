@@ -27,3 +27,14 @@ export const signInSchema = z.object({
   email:getEmailSchema(),
   password:getPasswordSchema("password")
 })
+
+export const forgotPasswordSchema = z.object({
+  email:getEmailSchema()
+})
+export const resetPasswordSchema = z.object({
+  newPassword:getPasswordSchema("password"),
+  confirmPassword:getPasswordSchema("confirmPassword")
+}).refine((data)=>data.confirmPassword === data.newPassword,{
+  message:"passwords dont match",
+  path:["confirmPassword"]
+})

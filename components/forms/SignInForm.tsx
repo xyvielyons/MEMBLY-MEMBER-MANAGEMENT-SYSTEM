@@ -18,7 +18,7 @@ import { Input } from "@/components/ui/input"
 import { signInSchema } from '@/zod/zod'
 import { authClient } from '@/auth-client'
 import { useToast } from "@/hooks/use-toast"
-
+import Link from 'next/link'
 const SignInForm = () => {
     const [pending, setPending] = useState(false);
     const { toast } = useToast()
@@ -90,7 +90,9 @@ const SignInForm = () => {
             </FormItem>
           )}
         />
-       
+         <div className="flex justify-end">
+           <Link href="/forgot-password" className='text-gray-500 font-medium hover:text-gray-700 active:text-gray-700 text-sm'>Forgot password?</Link>
+        </div>
         <Button isLoading={pending} className='w-full text-[15px] font-medium bg-gray-800 text-white' type="submit" radius='sm'>Sign In</Button>
       </form>
     </Form>
