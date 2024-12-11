@@ -16,11 +16,13 @@ import LogoutModal from '../forms/LogoutModal';
 import DeleteModal from '../forms/DeleteModal';
 import ChangeNameModal from '../forms/ChangeNameModal';
 import ChangeEmailModal from '../forms/ChangeEmailModal';
+import ChangePasswordModal from '../forms/ChangePasswordModal';
 const UserInformation = ({session}:{session:any}) => {
     const {isOpen:isOpenLogout, onOpen:onOpenLogout, onOpenChange:onOpenChangeLogout} = useDisclosure();
     const {isOpen:isOpenDelete, onOpen:onOpenDelete, onOpenChange:onOpenChangeDelete} = useDisclosure();
     const {isOpen:isOpenChangeName, onOpen:onOpenChangeName, onOpenChange:onOpenChangeChangeName} = useDisclosure();
     const {isOpen:isOpenChangeEmail, onOpen:onOpenChangeEmail, onOpenChange:onOpenChangeChangeEmail} = useDisclosure();
+    const {isOpen:isOpenChangePassword, onOpen:onOpenChangePassword, onOpenChange:onOpenChangeChangePassword} = useDisclosure();
     console.log(session)
   return (
     <div className="">
@@ -66,7 +68,7 @@ const UserInformation = ({session}:{session:any}) => {
                                 <p className='text-gray-600 text-right text-[16px] md:text-[16px] '>**********</p>
                             </div>
                             
-                            <Button className='' variant='flat' radius='sm'>edit</Button>
+                            <Button onClick={onOpenChangePassword} className='' variant='flat' radius='sm'>edit</Button>
                         </div>
                         <div className="flex items-center justify-between  border-b-1 border-gray-200 py-2 w-full">
                             <div className="flex gap-2 md:items-center items-start justify-center  flex-col md:flex-row">
@@ -93,6 +95,7 @@ const UserInformation = ({session}:{session:any}) => {
             <DeleteModal isOpen={isOpenDelete} onOpenChange={onOpenChangeDelete}></DeleteModal>
             <ChangeNameModal isOpen={isOpenChangeName} onOpenChange={onOpenChangeChangeName} Mysession={session}></ChangeNameModal>
             <ChangeEmailModal isOpen={isOpenChangeEmail} onOpenChange={onOpenChangeChangeEmail} Mysession={session}></ChangeEmailModal>
+            <ChangePasswordModal isOpen={isOpenChangePassword} onOpenChange={onOpenChangeChangePassword} Mysession={session}></ChangePasswordModal>
     </div>
     
   )

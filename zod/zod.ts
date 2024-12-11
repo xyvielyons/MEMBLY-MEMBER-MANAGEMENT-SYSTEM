@@ -6,7 +6,7 @@ const getEmailSchema = ()=>(
 const getNameSchema = () => (
   string({required_error:"Name is required"}).min(1,"Name is required").max(50,"Name must be less than 50 characters")
 )
-const getPasswordSchema = (type:"password" | "confirmPassword") => (
+const getPasswordSchema = (type:"password" | "confirmPassword" | "newPassword" | "currentPassword") => (
   string ({required_error:`${type} is required`})
   .min(8,`${type} must be atleast 8 characters`)
   .max(32,`${type} can not exceed 32 characters`)
@@ -37,6 +37,10 @@ export const resetPasswordSchema = z.object({
 }).refine((data)=>data.confirmPassword === data.newPassword,{
   message:"passwords dont match",
   path:["confirmPassword"]
+})
+export const changePasswordSchema = z.object({
+  currentPassword:getPasswordSchema("currentPassword"),
+  newPassword:getPasswordSchema("newPassword")
 })
 
 export const ChangeNameSchema = z.object({
