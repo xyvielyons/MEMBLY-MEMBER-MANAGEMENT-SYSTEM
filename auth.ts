@@ -3,11 +3,19 @@ import {prismaAdapter} from 'better-auth/adapters/prisma'
 import prisma from "./lib/prisma";
 import { sendEmail } from "./actions/SendEmail";
 import {openAPI} from "better-auth/plugins"
+import { admin } from "better-auth/plugins"
 
 export const auth = betterAuth({
     database:prismaAdapter(prisma,{ 
         provider:"mongodb"
     }),
+    user:{
+        additionalFields:{
+            role:{
+                type:"string"
+            }
+        }
+    },
     socialProviders:{
         github:{
             clientId:process.env.GITHUB_CLIENT_ID as string,
@@ -18,7 +26,7 @@ export const auth = betterAuth({
             clientSecret:process.env.GOOGLE_CLIENT_SECRET as string
         }
     },
-    plugins:[openAPI()], //api/auth/reference
+    plugins:[openAPI(),admin()], //api/auth/reference
     emailAndPassword: { 
         enabled: true,
         //we can enable email verification by setting this to true
