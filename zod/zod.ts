@@ -49,3 +49,6 @@ export const ChangeNameSchema = z.object({
 export const ChangeEmailSchema = z.object({
   email:getEmailSchema()
 })
+export const ImageUploaderSchema = z.object({
+  url:z.string()
+})

@@ -5,6 +5,7 @@ import { headers } from "next/headers";
 import { assets } from '@/public/assets';
 import Image from 'next/image';
 import UserInformation from '@/components/cards/UserInformation';
+import ProfilePictureChanger from '@/components/ProfilePictureChanger';
 const page = async() => {
   const session:any = await auth.api.getSession({
 		headers:await headers()
@@ -27,6 +28,9 @@ const page = async() => {
           <div className="absolute md:left-[210px] md:bottom-[-50px] left-[155px] bottom-[-50px]">
             <h1 className='text-xl font-bold text-gray-800'>{session?.user.name}</h1>
             <p className='md:text-md text-sm text-gray-600'>{session?.user.email}</p>
+          </div>
+          <div className="absolute md:left-[50px] md:bottom-[-100px] left-[20px] bottom-[-100px]">
+              <ProfilePictureChanger session={session}></ProfilePictureChanger>
           </div>
         </div>
         <div className="">
