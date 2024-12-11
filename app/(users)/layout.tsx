@@ -6,7 +6,7 @@ const RootLayout = ({
     children: React.ReactNode;
   }>) => {
   return (
-    <div className='bg-gray-100 h-screen p-2 max-w-7xl mx-auto'>{children}</div>
+    <div className='bg-gray-100 h-full max-w-7xl mx-auto'>{children}</div>
   )
 }
 
