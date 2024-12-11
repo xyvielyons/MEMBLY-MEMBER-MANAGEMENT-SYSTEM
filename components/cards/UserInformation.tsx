@@ -15,10 +15,13 @@ import { Button } from '@nextui-org/react'
 import LogoutModal from '../forms/LogoutModal';
 import DeleteModal from '../forms/DeleteModal';
 import ChangeNameModal from '../forms/ChangeNameModal';
+import ChangeEmailModal from '../forms/ChangeEmailModal';
 const UserInformation = ({session}:{session:any}) => {
     const {isOpen:isOpenLogout, onOpen:onOpenLogout, onOpenChange:onOpenChangeLogout} = useDisclosure();
     const {isOpen:isOpenDelete, onOpen:onOpenDelete, onOpenChange:onOpenChangeDelete} = useDisclosure();
     const {isOpen:isOpenChangeName, onOpen:onOpenChangeName, onOpenChange:onOpenChangeChangeName} = useDisclosure();
+    const {isOpen:isOpenChangeEmail, onOpen:onOpenChangeEmail, onOpenChange:onOpenChangeChangeEmail} = useDisclosure();
+    console.log(session)
   return (
     <div className="">
         <div className='py-[100px] px-[16px]'>
@@ -27,8 +30,14 @@ const UserInformation = ({session}:{session:any}) => {
                         <CardTitle className='text-[20px]'>Your Profile</CardTitle>
                         <CardDescription>{session.user.name} you can manage your profile here</CardDescription>
                     </CardHeader>
-                    <CardContent>
+                    <CardContent className='space-y-2'>
                         
+                        <div className="flex items-center justify-between  border-b-1 border-gray-200 py-2 w-full">
+                            <div className="flex gap-2 md:items-center items-start justify-center  flex-col md:flex-row">
+                                <h1 className='font-bold text-[16px] text-gray-700'>MemberId</h1>
+                                <p className='text-gray-600 text-right text-[16px] md:text-[16px] '>{session.user.id}</p>
+                            </div>
+                        </div>
                         <div className="flex items-center justify-between  border-b-1 border-gray-200 py-2 w-full">
                             <div className="flex gap-2 md:items-center items-start justify-center  flex-col md:flex-row">
                                 <h1 className='font-bold text-[16px] text-gray-700'>Name</h1>
@@ -43,15 +52,13 @@ const UserInformation = ({session}:{session:any}) => {
                                 <p className='text-gray-600 text-right text-[16px] md:text-[16px] '>{session.user.email}</p>
                             </div>
                             
-                            <Button className='' variant='flat' radius='sm'>edit</Button>
+                            <Button className='' onPress={onOpenChangeEmail} variant='flat' radius='sm'>edit</Button>
                         </div>
                         <div className="flex items-center justify-between  border-b-1 border-gray-200 py-2 w-full">
                             <div className="flex gap-2 md:items-center items-start justify-center  flex-col md:flex-row">
                                 <h1 className='font-bold text-[16px] text-gray-700'>Role</h1>
                                 <p className='text-gray-600 text-right text-[16px] md:text-[16px] '>{session.user.role}</p>
-                            </div>
-                            
-                            <Button className='' variant='flat' radius='sm'>edit</Button>
+                            </div>                            
                         </div>
                         <div className="flex items-center justify-between  border-b-1 border-gray-200 py-2 w-full">
                             <div className="flex gap-2 md:items-center items-start justify-center  flex-col md:flex-row">
@@ -60,6 +67,18 @@ const UserInformation = ({session}:{session:any}) => {
                             </div>
                             
                             <Button className='' variant='flat' radius='sm'>edit</Button>
+                        </div>
+                        <div className="flex items-center justify-between  border-b-1 border-gray-200 py-2 w-full">
+                            <div className="flex gap-2 md:items-center items-start justify-center  flex-col md:flex-row">
+                                <h1 className='font-bold text-[16px] text-gray-700'>Email Verified</h1>
+                                <p className={`${session.user.emailVerified ? "bg-emerald-500 text-slate-100 px-[8px] rounded-md text-sm":"bg-red-500 text-slate-100 px-[8px] rounded-md text-sm"}`}>{`${session.user.emailVerified ? 'True':'False'}`}</p>
+                            </div>                            
+                        </div>
+                        <div className="flex items-center justify-between  border-b-1 border-gray-200 py-2 w-full">
+                            <div className="flex gap-2 md:items-center items-start justify-center  flex-col md:flex-row">
+                                <h1 className='font-bold text-[16px] text-gray-700'>Banned</h1>
+                                <p className={`${session.user.benned ? "bg-emerald-500 text-slate-100 px-[8px] rounded-md text-sm":"bg-red-500 text-slate-100 px-[8px] rounded-md text-sm"}`}>{`${session.user.banned ? 'True':'False'}`}</p>
+                            </div>                            
                         </div>
                         
                         
@@ -73,6 +92,7 @@ const UserInformation = ({session}:{session:any}) => {
             <LogoutModal isOpen={isOpenLogout} onOpenChange={onOpenChangeLogout}></LogoutModal>
             <DeleteModal isOpen={isOpenDelete} onOpenChange={onOpenChangeDelete}></DeleteModal>
             <ChangeNameModal isOpen={isOpenChangeName} onOpenChange={onOpenChangeChangeName} Mysession={session}></ChangeNameModal>
+            <ChangeEmailModal isOpen={isOpenChangeEmail} onOpenChange={onOpenChangeChangeEmail} Mysession={session}></ChangeEmailModal>
     </div>
     
   )

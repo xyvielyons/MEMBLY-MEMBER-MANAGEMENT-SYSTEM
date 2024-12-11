@@ -13,10 +13,23 @@ export const auth = betterAuth({
         additionalFields:{
             role:{
                 type:"string"
+            },
+            emailVerfied:{
+                type:"string"
             }
         },
         deleteUser:{
             enabled:true
+        },
+        changeEmail:{
+            enabled:true,
+            sendChangeEmailVerification:async ({ user, newEmail, url, token }, request) => {
+                await sendEmail({
+                    to: newEmail,
+                    subject: 'Verify your email change',
+                    text: `Click the link to verify: ${url}`
+                })
+            }
         }
     },
     socialProviders:{

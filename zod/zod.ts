@@ -42,3 +42,6 @@ export const resetPasswordSchema = z.object({
 export const ChangeNameSchema = z.object({
   name:getNameSchema()
 })
+export const ChangeEmailSchema = z.object({
+  email:getEmailSchema()
+})
