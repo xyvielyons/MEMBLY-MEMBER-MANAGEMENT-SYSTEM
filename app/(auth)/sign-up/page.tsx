@@ -3,14 +3,14 @@ import Image from 'next/image'
 import SignUpForm from '@/components/forms/SignUpForm'
 import Link from 'next/link'
 import Socials from '@/components/shared/Socials'
-
+import { assets } from '@/public/assets'
 const page = () => {
   return (
     <div className="flex flex-col md:flex-row max-w-screen-xl mx-auto">
       {/* Left Section */}
       <div className="pt-6 px-4 space-y-[28px] md:w-1/2">
         <div>
-          <Image src="/logo.svg" alt="logo" width={100} height={100} />
+          <Image src={assets.logo} alt="logo1" width={100} height={100} />
         </div>
         <div>
           <h1 className="text-4xl font-bold text-gray-800">Create account</h1>
@@ -31,7 +31,7 @@ const page = () => {
       <div className="md:w-1/2 w-full flex items-center justify-center p-[16px]">
         <div className="w-full max-w-[500px] p-8 bg-white relative">
           <Image
-            src="/image1.svg"
+            src={assets.signUp}
             alt="sign up image"
             layout="intrinsic"
             width={1000}
