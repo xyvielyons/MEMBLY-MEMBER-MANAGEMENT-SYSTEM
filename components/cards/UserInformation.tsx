@@ -14,9 +14,11 @@ import {
 import { Button } from '@nextui-org/react'
 import LogoutModal from '../forms/LogoutModal';
 import DeleteModal from '../forms/DeleteModal';
+import ChangeNameModal from '../forms/ChangeNameModal';
 const UserInformation = ({session}:{session:any}) => {
     const {isOpen:isOpenLogout, onOpen:onOpenLogout, onOpenChange:onOpenChangeLogout} = useDisclosure();
     const {isOpen:isOpenDelete, onOpen:onOpenDelete, onOpenChange:onOpenChangeDelete} = useDisclosure();
+    const {isOpen:isOpenChangeName, onOpen:onOpenChangeName, onOpenChange:onOpenChangeChangeName} = useDisclosure();
   return (
     <div className="">
         <div className='py-[100px] px-[16px]'>
@@ -33,7 +35,7 @@ const UserInformation = ({session}:{session:any}) => {
                                 <p className='text-gray-600 text-right text-[16px] md:text-[16px] '>{session.user.name}</p>
                             </div>
                             
-                            <Button className='' variant='flat' radius='sm'>edit</Button>
+                            <Button onPress={onOpenChangeName} className='' variant='flat' radius='sm'>edit</Button>
                         </div>
                         <div className="flex items-center justify-between  border-b-1 border-gray-200 py-2 w-full">
                             <div className="flex gap-2 md:items-center items-start justify-center  flex-col md:flex-row">
@@ -70,6 +72,7 @@ const UserInformation = ({session}:{session:any}) => {
             </div>
             <LogoutModal isOpen={isOpenLogout} onOpenChange={onOpenChangeLogout}></LogoutModal>
             <DeleteModal isOpen={isOpenDelete} onOpenChange={onOpenChangeDelete}></DeleteModal>
+            <ChangeNameModal isOpen={isOpenChangeName} onOpenChange={onOpenChangeChangeName} Mysession={session}></ChangeNameModal>
     </div>
     
   )

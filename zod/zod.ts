@@ -38,3 +38,7 @@ export const resetPasswordSchema = z.object({
   message:"passwords dont match",
   path:["confirmPassword"]
 })
+
+export const ChangeNameSchema = z.object({
+  name:getNameSchema()
+})
