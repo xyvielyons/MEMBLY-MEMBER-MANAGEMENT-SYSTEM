@@ -16,18 +16,19 @@ const AdminImpersonateModal = ({isOpen,onOpenChange,userData}:{isOpen:any,onOpen
     const {toast} = useToast()
     const router = useRouter();
 	  const [pending, setPending] = useState(false);
-    const handleDeleteUser = async () => {
+    const handlePersonationUser = async () => {
       try {
       //set pending to true
         setPending(true);
         //we call the authClient.signout function
-        await authClient.admin.removeUser({
+        await authClient.admin.impersonateUser({
           userId: userData.id
         });
+        router.push('/');
         toast({
           title: "Success",
           description:
-            `User was deleted successfully`,
+            `You are now impersonating ${userData.name}`,
         });
         router.refresh()
       } catch (error) {
@@ -51,16 +52,16 @@ const AdminImpersonateModal = ({isOpen,onOpenChange,userData}:{isOpen:any,onOpen
     <ModalContent>
       {(onClose) => (
         <>
-          <ModalHeader className="flex flex-col gap-1">Delete Account</ModalHeader>
+          <ModalHeader className="flex flex-col gap-1">Impersonate Account</ModalHeader>
           <ModalBody>
-            <p>Are you sure you want to delete the selected account?{userData.name}</p>
+            <p>Are you sure you want to Impersonate the selected account? {userData.name}</p>
           </ModalBody>
           <ModalFooter>
             <Button color="danger" variant="light" onPress={onClose}>
               Close
             </Button>
-            <Button color="primary" onPress={handleDeleteUser} isLoading={pending}>
-              delete Account
+            <Button color="primary" onPress={handlePersonationUser} isLoading={pending}>
+              Impersonate Account
             </Button>
           </ModalFooter>
         </>
