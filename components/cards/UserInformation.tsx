@@ -23,7 +23,6 @@ const UserInformation = ({session}:{session:any}) => {
     const {isOpen:isOpenChangeName, onOpen:onOpenChangeName, onOpenChange:onOpenChangeChangeName} = useDisclosure();
     const {isOpen:isOpenChangeEmail, onOpen:onOpenChangeEmail, onOpenChange:onOpenChangeChangeEmail} = useDisclosure();
     const {isOpen:isOpenChangePassword, onOpen:onOpenChangePassword, onOpenChange:onOpenChangeChangePassword} = useDisclosure();
-    console.log(session)
   return (
     <div className="">
         <div className='py-[100px] px-[16px]'>

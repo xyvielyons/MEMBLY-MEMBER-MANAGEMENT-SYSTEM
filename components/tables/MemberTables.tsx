@@ -201,7 +201,6 @@ export default function MemberTable() {
     getUsers()
     
   }, [])
-  console.log(myusers)
   
   
 

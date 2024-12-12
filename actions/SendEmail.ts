@@ -43,7 +43,6 @@ export async function sendEmail({
       text:message.text
     })
 
-    console.log(info)
     return {
       success: true,
       messageId:info.messageId
