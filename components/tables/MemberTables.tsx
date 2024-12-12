@@ -408,7 +408,7 @@ export default function MemberTable() {
           </div>
         </div>
         <div className="flex justify-between items-center">
-          <span className="text-default-400 text-small">Total {users.length} users</span>
+          <span className="text-default-400 text-small">Total {users.length} members</span>
           <label className="flex items-center text-default-400 text-small">
             Rows per page:
             <select
@@ -491,7 +491,7 @@ export default function MemberTable() {
           </TableColumn>
         )}
       </TableHeader>
-      <TableBody emptyContent={"No users found"} items={sortedItems}>
+      <TableBody emptyContent={"No members found"} items={sortedItems}>
         {(item) => (
           <TableRow key={item.id}>
             {(columnKey) => <TableCell>{renderCell(item, columnKey)}</TableCell>}
