@@ -6,12 +6,22 @@ import { assets } from '@/public/assets';
 import Image from 'next/image';
 import UserInformation from '@/components/cards/UserInformation';
 import ProfilePictureChanger from '@/components/ProfilePictureChanger';
+import SyncLoader from "react-spinners/SyncLoader";
+
 const page = async() => {
   const session:any = await auth.api.getSession({
 		headers:await headers()
 	})
   if(!session){
-    return <h1>Loading....</h1>
+    return (
+      <div className="w-[full] h-screen flex items-center justify-center">
+        <SyncLoader
+          size={15}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+        />
+      </div>
+    )
   }
   return (
     <div className="w-full">

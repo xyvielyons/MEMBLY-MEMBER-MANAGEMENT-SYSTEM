@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/sidebar"
 import { LayoutDashboard } from 'lucide-react';
 import { UserRound } from 'lucide-react';
+import SyncLoader from "react-spinners/SyncLoader";
 const items = [
   {
     title:"Analytics",
@@ -31,7 +32,15 @@ const items = [
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const { data: session }:any = authClient.useSession();
   if(!session){
-    return <h1>Loading....</h1>
+    return (
+      <div className="w-[200px] h-screen flex items-center justify-center">
+        <SyncLoader
+          size={15}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+        />
+      </div>
+    )
   }
   const MyUser = {
     name: session?.user.name,
