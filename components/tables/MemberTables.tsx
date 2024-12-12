@@ -29,6 +29,7 @@ import {
 } from "@nextui-org/react";
 import AdminDeleteModal from "../forms/AdminDeleteModal";
 import AdminImpersonateModal from "../forms/AdminImpersonateModal";
+import AdminBanModal from "../forms/AdminBanModal";
 
 export type IconSvgProps = SVGProps<SVGSVGElement> & {
   size?: number;
@@ -178,6 +179,7 @@ export default function MemberTable() {
   const [userData, setUserData] = useState()
   const {isOpen:isOpenDelete, onOpen:onOpenDelete, onOpenChange:onOpenChangeDelete} = useDisclosure();
   const {isOpen:isOpenImpersonate, onOpen:onOpenImpersonate, onOpenChange:onOpenChangeImpersonate} = useDisclosure();
+  const {isOpen:isOpenBan, onOpen:onOpenBan, onOpenChange:onOpenChangeBan} = useDisclosure();
 
   const [myusers, setUsers] = useState<any>([])
   const users = [...myusers]
@@ -292,7 +294,10 @@ export default function MemberTable() {
                   onOpenImpersonate()
                   setUserData(user)
                 }}><FaPersonWalkingDashedLineArrowRight className="w-[24px] h-[24px] inline-flex mr-2" />Impersonate User</DropdownItem>
-                <DropdownItem key="edit"><FaBan className="w-[24px] h-[24px] inline-flex mr-2" />Ban User</DropdownItem>
+                <DropdownItem onClick={()=>{
+                  onOpenBan()
+                  setUserData(user)
+                }} key="edit"><FaBan className="w-[24px] h-[24px] inline-flex mr-2" />Ban User</DropdownItem>
                 <DropdownItem key="delete" onClick={()=>{
                   onOpenDelete()
                   setUserData(user)
@@ -490,6 +495,7 @@ export default function MemberTable() {
     <div className="">
     <AdminDeleteModal isOpen={isOpenDelete} onOpenChange={onOpenChangeDelete} userData={userData}/>
     <AdminImpersonateModal isOpen={isOpenImpersonate} onOpenChange={onOpenChangeImpersonate} userData={userData}></AdminImpersonateModal>
+    <AdminBanModal isOpen={isOpenBan} onOpenChange={onOpenChangeBan} userData={userData}></AdminBanModal>
     </div>
     
     </div>

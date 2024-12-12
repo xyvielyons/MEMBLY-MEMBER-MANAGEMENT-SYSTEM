@@ -12,28 +12,28 @@ import { authClient } from '@/auth-client';
 import { useRouter } from "next/navigation";
 import { useState} from "react";
 import { useToast } from '@/hooks/use-toast';
-const AdminImpersonateModal = ({isOpen,onOpenChange,userData}:{isOpen:any,onOpenChange:any,userData:any}) => {
+const AdminBanModal = ({isOpen,onOpenChange,userData}:{isOpen:any,onOpenChange:any,userData:any}) => {
     const {toast} = useToast()
     const router = useRouter();
 	  const [pending, setPending] = useState(false);
-    const handlePersonationUser = async () => {
+    const handleDeleteUser = async () => {
       try {
       //set pending to true
         setPending(true);
         //we call the authClient.signout function
-        await authClient.admin.impersonateUser({
-          userId: userData.id
+        await authClient.admin.banUser({
+          userId: userData.id,
+          banReason:"You have been banned by admin"
         });
-        router.push('/');
         toast({
           title: "Success",
           description:
-            `You are now impersonating ${userData.name}`,
+            `User was banned successfully`,
         });
         router.refresh()
       } catch (error) {
       //here we throw an errro
-        console.error("Error impersonating user", error);
+        console.error("Error banning user", error);
         toast({
           title: "Error",
           description:
@@ -52,16 +52,16 @@ const AdminImpersonateModal = ({isOpen,onOpenChange,userData}:{isOpen:any,onOpen
     <ModalContent>
       {(onClose) => (
         <>
-          <ModalHeader className="flex flex-col gap-1">Impersonate Account</ModalHeader>
+          <ModalHeader className="flex flex-col gap-1">Ban Account</ModalHeader>
           <ModalBody>
-            <p>Are you sure you want to Impersonate the selected account? {userData.name}</p>
+            <p>Are you sure you want to Ban the selected account?{userData.name}</p>
           </ModalBody>
           <ModalFooter>
             <Button color="danger" variant="light" onPress={onClose}>
               Close
             </Button>
-            <Button color="primary" onPress={handlePersonationUser} isLoading={pending}>
-              Impersonate Account
+            <Button color="primary" onPress={handleDeleteUser} isLoading={pending}>
+              Ban Account
             </Button>
           </ModalFooter>
         </>
@@ -71,4 +71,4 @@ const AdminImpersonateModal = ({isOpen,onOpenChange,userData}:{isOpen:any,onOpen
   )
 }
 
-export default AdminImpersonateModal
+export default AdminBanModal
