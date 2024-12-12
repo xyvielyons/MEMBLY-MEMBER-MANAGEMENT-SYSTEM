@@ -20,7 +20,14 @@ import {
   ChipProps,
   SortDescriptor,
 } from "@nextui-org/react";
+import { FaPersonWalkingDashedLineArrowRight } from "react-icons/fa6";
+import { FaBan } from "react-icons/fa";
+import { MdDelete } from "react-icons/md";
 import { authClient } from "@/auth-client";
+import {
+    useDisclosure,
+} from "@nextui-org/react";
+import AdminDeleteModal from "../forms/AdminDeleteModal";
 
 export type IconSvgProps = SVGProps<SVGSVGElement> & {
   size?: number;
@@ -167,6 +174,9 @@ export default function MemberTable() {
     column: "age",
     direction: "ascending",
   });
+  const [userData, setUserData] = useState()
+  const {isOpen:isOpenDelete, onOpen:onOpenDelete, onOpenChange:onOpenChangeDelete} = useDisclosure();
+
   const [myusers, setUsers] = useState<any>([])
   const users = [...myusers]
   useEffect(() => {
@@ -276,9 +286,12 @@ export default function MemberTable() {
                 </Button>
               </DropdownTrigger>
               <DropdownMenu>
-                <DropdownItem key="view">View</DropdownItem>
-                <DropdownItem key="edit">Edit</DropdownItem>
-                <DropdownItem key="delete">Delete</DropdownItem>
+                <DropdownItem key="view"><FaPersonWalkingDashedLineArrowRight className="w-[24px] h-[24px] inline-flex mr-2" />Impersonate User</DropdownItem>
+                <DropdownItem key="edit"><FaBan className="w-[24px] h-[24px] inline-flex mr-2" />Ban User</DropdownItem>
+                <DropdownItem key="delete" onClick={()=>{
+                  onOpenDelete()
+                  setUserData(user)
+                }}><MdDelete className="w-[24px] h-[24px] inline-flex mr-2" />Delete User</DropdownItem>
               </DropdownMenu>
             </Dropdown>
           </div>
@@ -433,7 +446,8 @@ export default function MemberTable() {
   }, [selectedKeys, items.length, page, pages, hasSearchFilter]);
 
   return (
-    <Table
+    <div className="">
+<Table
       isHeaderSticky
       aria-label="Example table with custom cells, pagination and sorting"
       bottomContent={bottomContent}
@@ -468,5 +482,11 @@ export default function MemberTable() {
         )}
       </TableBody>
     </Table>
+    <div className="">
+    <AdminDeleteModal isOpen={isOpenDelete} onOpenChange={onOpenChangeDelete} userData={userData}/>
+    </div>
+    
+    </div>
+    
   );
 }
