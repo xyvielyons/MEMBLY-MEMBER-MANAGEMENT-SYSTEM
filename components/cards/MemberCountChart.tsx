@@ -144,6 +144,15 @@ export default function MemberCountChart({members}:{members:any}) {
         <div className="leading-none text-muted-foreground">
           Showing total Members in the organization
         </div>
+        <div className="flex flex-row gap-4">
+            <div className="leading-none text-gray-600 font-bold">
+            {`Admins: ${Figures.admin}`}
+            </div>
+            <div className="leading-none text-gray-600 font-bold">
+            {`Users: ${Figures.user}`}
+            </div>
+        </div>
+        
       </CardFooter>
     </Card>
   )
