@@ -1,36 +1,83 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## Screenshots of the deployed app
+sign-in and sign up pages
+<img width="500" alt="Screenshot 2024-12-12 at 15 30 03" src="https://github.com/user-attachments/assets/b7115c20-4aad-401e-a036-6b2cb000d716" />
+<img width="500" alt="Screenshot 2024-12-12 at 15 30 06" src="https://github.com/user-attachments/assets/8c7f0216-3a8f-4862-b7de-45b0ce82c926" />
+
+Profile pages
+<img width="1280" alt="Screenshot 2024-12-12 at 15 34 25" src="https://github.com/user-attachments/assets/39fc6200-090d-4f1e-8541-a0586b53097e" />
+
+
+
+The dashboard can only be accessed by admins and only admins
+<img width="500" alt="Screenshot 2024-12-12 at 15 34 42" src="https://github.com/user-attachments/assets/e466ab03-4ced-45ce-a6a9-2eb94fae0cb5" />
+<img width="500" alt="Screenshot 2024-12-12 at 15 34 33" src="https://github.com/user-attachments/assets/7c5f557f-3d7e-4089-908d-3e6014da2084" />
 
 ## Getting Started
-
-First, run the development server:
+First clone the app from github
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install --force
+
+```
+The --force flag is to force installation of some of the dependencies because as of right now am using next 15 RC which is the latest version and react 19 is not yet compatible with some libraries yet.
+
+We then have to run
+```bash
+npx prisma generate 
+```
+In this project i have opted to use an ORM (Prisma) just incase you would like to migrate from one database to another.This brings out flexibility because it can work with any nosql and sql databases out of the box without affecting performance
+
+## Running the project in DEVELOPMENT
+To run The project
+```bash
+npm run dev 
+```
+## Running the project in PRODUCTION
+We first need to build the project
+```bash
+npm run build
+```
+After building the project we then have to run this to start the server
+```bash
+npm run start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Environment Variables
+we the have to Update the environment variables
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+//in this case i used mongodb
+DATABASE_URL="mongodb+srv://#########@cluster0.gyxsf.mongodb.net/memblymanagementsystem?retryWrites=true&w=majority&appName=Cluster0"
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+//This is a random string that will be used to encrypt your credential passwords
 
-## Learn More
+BETTER_AUTH_SECRET=uDY2bBjj1jz5ZyFGjgV8oaUViImATqzv
 
-To learn more about Next.js, take a look at the following resources:
+//This is the server name that your application is running on
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+BETTER_AUTH_URL=http://localhost:3000
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+//we then have to setupup the email verified route which is your server name followed by the /email-verified route
 
-## Deploy on Vercel
+EMAIL_VERIFICATION_CALLBACK_URL=http://localhost:3000/email-verified
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+//we have also implemented GITHUB OAUTH 
+//input GITHUB_ID AND GITHUB_SECRET as obtained in Github
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+GITHUB_CLIENT_ID="Ov23l######ZtPm6TE"
+GITHUB_CLIENT_SECRET="a95805706f#################589956fc2"
+
+//we have also implemented GOOGLE OAUTH
+
+GOOGLE_CLIENT_ID="141535844853-e###############af8k.apps.googleusercontent.com"
+GOOGLE_CLIENT_SECRET="GOCSP##################8NxrVTi-f"
+
+//For our image and file storage we use uploadthing
+//For it to work correctly we need to input our uploadthing access token as obtained from uploadthing.com
+
+UPLOADTHING_TOKEN='eyJhcGlLZXkiOiJza19saXZlXzNhMm#################################################iLCJhcHBJZCI6Imk1YWdudzViZm8iLCJyZWdpb25zIjpbInNlYTEiXX0='
+
+```
+## Self Hosting
+This project is fully optimized for self hosting and has used the best development practices
+
