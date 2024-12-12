@@ -32,6 +32,7 @@ const SignUpForm = () => {
             confirmPassword:""
           },
         })
+        const {reset} = form;
        
         // 2. Define a submit handler.
         async function onSubmit(values: z.infer<typeof signUpSchema>) {
@@ -62,6 +63,7 @@ const SignUpForm = () => {
                     }
                 }
             )
+            reset()
             setPending(false);
         }
       

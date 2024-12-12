@@ -35,6 +35,7 @@ const ResetForm = () => {
             confirmPassword:""
           },
         })
+        const {reset} = form;
        
         // 2. Define a submit handler.
         async function onSubmit(values: z.infer<typeof resetPasswordSchema>) {
@@ -60,6 +61,7 @@ const ResetForm = () => {
               router.push("/sign-in");
             }
             //we then set ispending to false
+            reset()
             setPending(false);
         }
         if (error === "INVALID_TOKEN") {

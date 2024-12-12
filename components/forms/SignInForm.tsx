@@ -31,6 +31,7 @@ const SignInForm = () => {
             password:"",
           },
         })
+        const {reset} = form;
        
         // 2. Define a submit handler.
         async function onSubmit(values: z.infer<typeof signInSchema>) {
@@ -57,6 +58,7 @@ const SignInForm = () => {
                     }
                 }
             )
+            reset()
             setPending(false);
         }
       
